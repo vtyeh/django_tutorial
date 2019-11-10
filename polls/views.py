@@ -15,6 +15,7 @@ from django.http import HttpResponseRedirect #HttpResponse, Http404
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.views import generic
+from django.db.models import F
 
 from .models import Question, Choice
 
@@ -45,8 +46,12 @@ def vote(request, question_id):
             'error_message': "You didn't slect a choice.",
         })
     else:
-        selected_choice.votes += 1
+        # Use F() to avoid race conditions. Database is responsible for updating,
+        # so it only updates if a save() or update() is executed, rather than based 
+        # on its value when the instance was retrieved
+        selected_choice.votes = F('votes') + 1
         selected_choice.save()
+
     # Always return an HttpResponseRedirect after successfully dealing with POST data. 
     # This prevents data from being posted twice if a user hits the Back button.
     # reverse() helps to avoid having to hardcode a URL in the view function
