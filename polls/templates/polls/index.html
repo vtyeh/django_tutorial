@@ -1,10 +1,20 @@
-{% if latest_question_list %}
-    <ul>
-    {% for question in latest_question_list %}
-        <!-- <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li> -->
-        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No polls are available.</p>
-{% endif %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
+<!-- <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
+
+<div class="card">
+    <h2>Vote on the latest questions:</h2>
+    <hr>
+    
+    {% if latest_question_list %}
+        {% for question in latest_question_list %}
+            <!-- <li><a href="/polls/{{ question.id }}/">{{ question.question_text }}</a></li> -->
+            <p><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></p>
+        {% endfor %}
+    {% else %}
+        <p>No polls are available.</p>
+    {% endif %}
+
+    <img src="../static/polls/images/analytics.png" width="100px" height="auto" style="position: absolute; bottom: 2em; right: 2em;">
+</div>

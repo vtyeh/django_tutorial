@@ -1,0 +1,89 @@
+body {
+    background: #e7f3ee;
+    font-family: 'Open Sans', sans-serif;
+    color: rgb(66, 66, 66);
+}
+
+h2,h3 {
+    margin: 0 0 10 0;
+    color: #b18ea6;
+}
+
+hr {
+    border: none;
+    background-color: rgb(221, 221, 221);
+    color: rgb(221, 221, 221);
+    width: 97%;
+    height: 0.5px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 2px;
+    height: 300px;
+    margin: 8em auto;
+    position: relative;
+    width: 400px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    padding: 30px;
+    letter-spacing: 2px;
+}
+
+.card:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+a {
+    text-decoration: none;
+    color: rgb(66, 66, 66);
+}
+
+a:hover {
+    color: gray;
+}
+
+.btn-vote {
+    margin: 10px;
+    outline: none;
+    border: none;
+    background-color: #b18ea6;
+    font-size: 14px;
+    color: white;
+    text-transform: uppercase;
+    padding: 8px 25px;
+    letter-spacing: 2px;
+    border-radius: 20px;
+    position: absolute;
+    bottom: 2em;
+    right: 2em;
+}
+
+.btn-vote:hover {
+    background-color: #f2a6a6;
+}
+
+
+.btn-back {
+    margin: 10px;
+    outline: none;
+    border: none;
+    color: #b18ea6;
+    font-size: 14px;
+    background-color: white;
+    text-transform: uppercase;
+    padding: 8px 10px;
+    letter-spacing: 2px;
+    border-radius: 20px;
+    position: absolute;
+    bottom: 2em;
+    right: 10em;
+}
+
+.choices{
+    margin: 20 0 20 0;
+}
+
+span {
+    color: #b18ea6;
+}
