@@ -10,6 +10,7 @@ In Django, web pages and other content are delivered by views. Each view is repr
 simple Python function (or method, in the case of class-based views). Django will choose a view 
 by examining the URL that’s requested (to be precise, the part of the URL after the domain name).
 """
+
 from django.http import HttpResponseRedirect #HttpResponse, Http404
 # from django.template import loader
 from django.shortcuts import render, get_object_or_404
@@ -24,7 +25,7 @@ class IndexView(generic.ListView):
     context_object_name = 'latest_question_list'
 
     def get_queryset(self):
-        """Return the last five published questions."""
+        """ Return the last five published questions. """
         return Question.objects.order_by('-pub_date')[:5]
     
 class DetailView(generic.DetailView):
@@ -36,16 +37,22 @@ class ResultsView(generic.DetailView):
     template_name = 'polls/results.html'
 
 def vote(request, question_id):
+    # Get the question
     question = get_object_or_404(Question, pk=question_id)
+
     try:
+        # Get user's choice
         selected_choice = question.choice_set.get(pk=request.POST['choice'])
+
     except (KeyError, Choice.DoesNotExist):
-        # Redisplay the question voting form.
+        # If no choice selected and form is submitted, redisplay the question voting form with error message
         return render(request, 'polls/detail.html', {
             'question': question,
             'error_message': "You didn't select a choice.",
         })
+
     else:
+        # Add 1 to the vote count of selected choice
         # Use F() to avoid race conditions. Database is responsible for updating,
         # so it only updates if a save() or update() is executed, rather than based 
         # on its value when the instance was retrieved

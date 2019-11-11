@@ -5,6 +5,7 @@ from . import views
 # In most cases, there may be many different apps within a project that have similar view names
 # Add the app name so Django knows which app view to use
 app_name = 'polls'
+
 urlpatterns = [
     # /polls/
     path('', views.IndexView.as_view(), name='index'),

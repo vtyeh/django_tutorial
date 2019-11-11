@@ -40,7 +40,7 @@ a {
 }
 
 a:hover {
-    color: gray;
+    color: rgba(66, 66, 66, 0.5);
 }
 
 .btn-vote {

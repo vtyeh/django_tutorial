@@ -25,12 +25,13 @@ Run >>>python manage.py sqlmigrate polls 001
 This gives you a preview of what SQL Django thinks is required and what it will do.
 Alternatively, you can run python manage.py check
 
-Run >>> python manage.py migrate
+Run >>>python manage.py migrate
 This synchronizes the changes you made to your models with the schema in the database.
 
 Migration is powerful because it lets you change your models and develop without having
 to delete your database or tables and make new ones.
 """
+
 from django.db import models
 from django.utils import timezone
 
@@ -39,22 +40,26 @@ import datetime
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
     pub_date = models.DateTimeField('date published')
-
-    # It’s important to add __str__() methods to your models, not only for your own convenience 
-    # when dealing with the interactive prompt, but also because objects’ representations are used 
-    # throughout Django’s automatically-generated admin.
+    
     def __str__(self):
+        """
+        It’s important to add __str__() methods to your models, not only for your own convenience 
+        when dealing with the interactive prompt, but also because objects’ representations are used 
+        throughout Django’s automatically-generated admin.
+        """
         return self.question_text
-
-    # Custom method. Checks if published date is no later than a day ago
+    
     def was_published_recently(self):
+        """ Custom method. Checks if published date is no later than a day ago """
         return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
 
 class Choice(models.Model):
     # ForeignKey tells Django each Choice is related to a single Question
     # Django supports many-to-one, many-to-many, and one-to-one relationships
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
+
     choice_text = models.CharField(max_length=200)
+    
     # default option is optional
     votes = models.IntegerField(default=0)
 
